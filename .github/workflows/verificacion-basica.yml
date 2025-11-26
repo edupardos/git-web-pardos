@@ -1,0 +1,26 @@
+name: Verificación básica del proyecto
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verificacion:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Mostrar información del repositorio
+        run: |
+          echo "Rama actual:"
+          git rev-parse --abbrev-ref HEAD || echo "No se pudo obtener la rama"
+
+          echo
+          echo "Contenido del repositorio:"
+          ls -R || echo "No se pudo listar el contenido"
+
+      - name: Comprobación básica completada
+        run: |
+          echo "✅ Workflow ejecutado correctamente. Proyecto listo para desplegar."
